@@ -1,0 +1,349 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		983219621472DC9700EE1105 /* MindYourOSCs.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 983219611472DC9700EE1105 /* MindYourOSCs.1 */; };
+		983219821472DEF000EE1105 /* libboost_thread-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 983219811472DEF000EE1105 /* libboost_thread-mt.dylib */; };
+		983219861472DF2100EE1105 /* libboost_signals-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 983219851472DF2100EE1105 /* libboost_signals-mt.dylib */; };
+		98507A19147B16BC006CF309 /* AppMenu.cc in Sources */ = {isa = PBXBuildFile; fileRef = 98507A0E147B16BC006CF309 /* AppMenu.cc */; };
+		98507A1A147B16BC006CF309 /* Driver.cc in Sources */ = {isa = PBXBuildFile; fileRef = 98507A11147B16BC006CF309 /* Driver.cc */; };
+		98507A1B147B16BC006CF309 /* Emotiv.cc in Sources */ = {isa = PBXBuildFile; fileRef = 98507A14147B16BC006CF309 /* Emotiv.cc */; };
+		98507A1C147B16BC006CF309 /* EmotivHandler.cc in Sources */ = {isa = PBXBuildFile; fileRef = 98507A16147B16BC006CF309 /* EmotivHandler.cc */; };
+		98507A1D147B16BC006CF309 /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = 98507A18147B16BC006CF309 /* main.cc */; };
+		98BE12B7147C9DAE006C2102 /* libedk_ultils_mac.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE12B4147C9DAE006C2102 /* libedk_ultils_mac.dylib */; };
+		98BE12B8147C9DAE006C2102 /* libedk.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE12B5147C9DAE006C2102 /* libedk.1.dylib */; };
+		98BE12B9147C9DAE006C2102 /* libiomp5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE12B6147C9DAE006C2102 /* libiomp5.dylib */; };
+		98BE12C0147C9E7D006C2102 /* IpEndpointName.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE12BA147C9E7D006C2102 /* IpEndpointName.cpp */; };
+		98BE12C1147C9E7D006C2102 /* NetworkingUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE12BC147C9E7D006C2102 /* NetworkingUtils.cpp */; };
+		98BE12C2147C9E7D006C2102 /* UdpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE12BD147C9E7D006C2102 /* UdpSocket.cpp */; };
+		98BE12C3147C9E7D006C2102 /* OscOutboundPacketStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE12BE147C9E7D006C2102 /* OscOutboundPacketStream.cpp */; };
+		98BE12C4147C9E7D006C2102 /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE12BF147C9E7D006C2102 /* OscTypes.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		983219591472DC9700EE1105 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				983219621472DC9700EE1105 /* MindYourOSCs.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9832195B1472DC9700EE1105 /* MindYourOSCs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MindYourOSCs; sourceTree = BUILT_PRODUCTS_DIR; };
+		983219611472DC9700EE1105 /* MindYourOSCs.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = MindYourOSCs.1; sourceTree = "<group>"; };
+		983219811472DEF000EE1105 /* libboost_thread-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_thread-mt.dylib"; path = "/opt/local/lib/libboost_thread-mt.dylib"; sourceTree = "<absolute>"; };
+		983219851472DF2100EE1105 /* libboost_signals-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_signals-mt.dylib"; path = "/opt/local/lib/libboost_signals-mt.dylib"; sourceTree = "<absolute>"; };
+		98507A0E147B16BC006CF309 /* AppMenu.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppMenu.cc; sourceTree = "<group>"; };
+		98507A0F147B16BC006CF309 /* AppMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppMenu.h; sourceTree = "<group>"; };
+		98507A11147B16BC006CF309 /* Driver.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Driver.cc; sourceTree = "<group>"; };
+		98507A12147B16BC006CF309 /* Driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Driver.h; sourceTree = "<group>"; };
+		98507A14147B16BC006CF309 /* Emotiv.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Emotiv.cc; sourceTree = "<group>"; };
+		98507A15147B16BC006CF309 /* Emotiv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Emotiv.h; sourceTree = "<group>"; };
+		98507A16147B16BC006CF309 /* EmotivHandler.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EmotivHandler.cc; sourceTree = "<group>"; };
+		98507A17147B16BC006CF309 /* EmotivHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotivHandler.h; sourceTree = "<group>"; };
+		98507A18147B16BC006CF309 /* main.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cc; sourceTree = "<group>"; };
+		98BE12B4147C9DAE006C2102 /* libedk_ultils_mac.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libedk_ultils_mac.dylib; path = ../../Libraries/Emotiv/Libraries/libedk_ultils_mac.dylib; sourceTree = "<group>"; };
+		98BE12B5147C9DAE006C2102 /* libedk.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libedk.1.dylib; path = ../../Libraries/Emotiv/Libraries/libedk.1.dylib; sourceTree = "<group>"; };
+		98BE12B6147C9DAE006C2102 /* libiomp5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiomp5.dylib; path = ../../Libraries/Emotiv/Libraries/libiomp5.dylib; sourceTree = "<group>"; };
+		98BE12BA147C9E7D006C2102 /* IpEndpointName.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IpEndpointName.cpp; path = oscpack/ip/IpEndpointName.cpp; sourceTree = "<group>"; };
+		98BE12BC147C9E7D006C2102 /* NetworkingUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkingUtils.cpp; sourceTree = "<group>"; };
+		98BE12BD147C9E7D006C2102 /* UdpSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UdpSocket.cpp; sourceTree = "<group>"; };
+		98BE12BE147C9E7D006C2102 /* OscOutboundPacketStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OscOutboundPacketStream.cpp; path = oscpack/osc/OscOutboundPacketStream.cpp; sourceTree = "<group>"; };
+		98BE12BF147C9E7D006C2102 /* OscTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OscTypes.cpp; path = oscpack/osc/OscTypes.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		983219581472DC9700EE1105 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				983219821472DEF000EE1105 /* libboost_thread-mt.dylib in Frameworks */,
+				983219861472DF2100EE1105 /* libboost_signals-mt.dylib in Frameworks */,
+				98BE12B7147C9DAE006C2102 /* libedk_ultils_mac.dylib in Frameworks */,
+				98BE12B8147C9DAE006C2102 /* libedk.1.dylib in Frameworks */,
+				98BE12B9147C9DAE006C2102 /* libiomp5.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		983219501472DC9700EE1105 = {
+			isa = PBXGroup;
+			children = (
+				98507A1F147B174B006CF309 /* oscpack source */,
+				98507A1E147B1737006CF309 /* Libs */,
+				98507A0D147B16BC006CF309 /* AppMenu */,
+				98507A10147B16BC006CF309 /* Driver */,
+				98507A13147B16BC006CF309 /* Emotiv */,
+				98507A18147B16BC006CF309 /* main.cc */,
+				9832195E1472DC9700EE1105 /* MindYourOSCs */,
+				9832195C1472DC9700EE1105 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9832195C1472DC9700EE1105 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9832195B1472DC9700EE1105 /* MindYourOSCs */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9832195E1472DC9700EE1105 /* MindYourOSCs */ = {
+			isa = PBXGroup;
+			children = (
+				983219611472DC9700EE1105 /* MindYourOSCs.1 */,
+			);
+			path = MindYourOSCs;
+			sourceTree = "<group>";
+		};
+		98507A0D147B16BC006CF309 /* AppMenu */ = {
+			isa = PBXGroup;
+			children = (
+				98507A0E147B16BC006CF309 /* AppMenu.cc */,
+				98507A0F147B16BC006CF309 /* AppMenu.h */,
+			);
+			path = AppMenu;
+			sourceTree = "<group>";
+		};
+		98507A10147B16BC006CF309 /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				98507A11147B16BC006CF309 /* Driver.cc */,
+				98507A12147B16BC006CF309 /* Driver.h */,
+			);
+			path = Driver;
+			sourceTree = "<group>";
+		};
+		98507A13147B16BC006CF309 /* Emotiv */ = {
+			isa = PBXGroup;
+			children = (
+				98507A14147B16BC006CF309 /* Emotiv.cc */,
+				98507A15147B16BC006CF309 /* Emotiv.h */,
+				98507A16147B16BC006CF309 /* EmotivHandler.cc */,
+				98507A17147B16BC006CF309 /* EmotivHandler.h */,
+			);
+			path = Emotiv;
+			sourceTree = "<group>";
+		};
+		98507A1E147B1737006CF309 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				983219851472DF2100EE1105 /* libboost_signals-mt.dylib */,
+				98BE12B4147C9DAE006C2102 /* libedk_ultils_mac.dylib */,
+				98BE12B5147C9DAE006C2102 /* libedk.1.dylib */,
+				98BE12B6147C9DAE006C2102 /* libiomp5.dylib */,
+				983219811472DEF000EE1105 /* libboost_thread-mt.dylib */,
+			);
+			name = Libs;
+			sourceTree = "<group>";
+		};
+		98507A1F147B174B006CF309 /* oscpack source */ = {
+			isa = PBXGroup;
+			children = (
+				98BE12BA147C9E7D006C2102 /* IpEndpointName.cpp */,
+				98BE12BB147C9E7D006C2102 /* posix */,
+				98BE12BE147C9E7D006C2102 /* OscOutboundPacketStream.cpp */,
+				98BE12BF147C9E7D006C2102 /* OscTypes.cpp */,
+			);
+			name = "oscpack source";
+			sourceTree = "<group>";
+		};
+		98BE12BB147C9E7D006C2102 /* posix */ = {
+			isa = PBXGroup;
+			children = (
+				98BE12BC147C9E7D006C2102 /* NetworkingUtils.cpp */,
+				98BE12BD147C9E7D006C2102 /* UdpSocket.cpp */,
+			);
+			name = posix;
+			path = oscpack/ip/posix;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9832195A1472DC9700EE1105 /* MindYourOSCs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 983219651472DC9700EE1105 /* Build configuration list for PBXNativeTarget "MindYourOSCs" */;
+			buildPhases = (
+				983219571472DC9700EE1105 /* Sources */,
+				983219581472DC9700EE1105 /* Frameworks */,
+				983219591472DC9700EE1105 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MindYourOSCs;
+			productName = MindYourOSCs;
+			productReference = 9832195B1472DC9700EE1105 /* MindYourOSCs */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		983219521472DC9700EE1105 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = QuantumTrip;
+			};
+			buildConfigurationList = 983219551472DC9700EE1105 /* Build configuration list for PBXProject "MindYourOSCs" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 983219501472DC9700EE1105;
+			productRefGroup = 9832195C1472DC9700EE1105 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9832195A1472DC9700EE1105 /* MindYourOSCs */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		983219571472DC9700EE1105 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98507A19147B16BC006CF309 /* AppMenu.cc in Sources */,
+				98507A1A147B16BC006CF309 /* Driver.cc in Sources */,
+				98507A1B147B16BC006CF309 /* Emotiv.cc in Sources */,
+				98507A1C147B16BC006CF309 /* EmotivHandler.cc in Sources */,
+				98507A1D147B16BC006CF309 /* main.cc in Sources */,
+				98BE12C0147C9E7D006C2102 /* IpEndpointName.cpp in Sources */,
+				98BE12C1147C9E7D006C2102 /* NetworkingUtils.cpp in Sources */,
+				98BE12C2147C9E7D006C2102 /* UdpSocket.cpp in Sources */,
+				98BE12C3147C9E7D006C2102 /* OscOutboundPacketStream.cpp in Sources */,
+				98BE12C4147C9E7D006C2102 /* OscTypes.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		983219631472DC9700EE1105 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		983219641472DC9700EE1105 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		983219661472DC9700EE1105 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include,
+					"/Users/Raymond/dev/c++/Libraries/Emotiv",
+					./oscpack,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Libraries/Emotiv/Libraries\"",
+					"\"$(SRCROOT)/../Libraries/boost/stage/lib\"",
+					/opt/local/lib,
+					"\"$(SRCROOT)/../../Libraries/Emotiv/Libraries\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		983219671472DC9700EE1105 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include,
+					"/Users/Raymond/dev/c++/Libraries/Emotiv",
+					./oscpack,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Libraries/Emotiv/Libraries\"",
+					"\"$(SRCROOT)/../Libraries/boost/stage/lib\"",
+					/opt/local/lib,
+					"\"$(SRCROOT)/../../Libraries/Emotiv/Libraries\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		983219551472DC9700EE1105 /* Build configuration list for PBXProject "MindYourOSCs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				983219631472DC9700EE1105 /* Debug */,
+				983219641472DC9700EE1105 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		983219651472DC9700EE1105 /* Build configuration list for PBXNativeTarget "MindYourOSCs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				983219661472DC9700EE1105 /* Debug */,
+				983219671472DC9700EE1105 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 983219521472DC9700EE1105 /* Project object */;
+}
