@@ -1,0 +1,23 @@
+Thank you for checking out MindYourOSCs. If you have any questions, comments or suggestions, please
+feel free to contact me at bitrayne@gmail.com
+
+This program uses the following libraries
+
+ - oscpack - 
+
+http://code.google.com/p/oscpack/
+
+Sources included as needed
+
+ - boost 1.47 - 
+ 
+http://www.boost.org/
+
+Source not include, but can be downloaded and installed
+
+ - Emotiv SDK -
+ 
+http://www.emotiv.com/store/sdk/index.php
+
+This uses functions for any developer SDK, including Lite
+ 
