@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cc" />
+    <ClCompile Include="AppMenu\AppMenu.cc">
+      <Filter>AppMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Driver\Driver.cc">
+      <Filter>Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="Emotiv\Emotiv.cc">
+      <Filter>Emotiv</Filter>
+    </ClCompile>
+    <ClCompile Include="Emotiv\EmotivHandler.cc">
+      <Filter>Emotiv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libraries\oscpack\ip\IpEndpointName.cpp">
+      <Filter>oscpack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libraries\oscpack\ip\win32\UdpSocket.cpp">
+      <Filter>oscpack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libraries\oscpack\ip\win32\NetworkingUtils.cpp">
+      <Filter>oscpack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libraries\oscpack\osc\OscOutboundPacketStream.cpp">
+      <Filter>oscpack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libraries\oscpack\osc\OscTypes.cpp">
+      <Filter>oscpack</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AppMenu\AppMenu.h">
+      <Filter>AppMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Driver\Driver.h">
+      <Filter>Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="Emotiv\EmotivHandler.h">
+      <Filter>Emotiv</Filter>
+    </ClInclude>
+    <ClInclude Include="Emotiv\Emotiv.h">
+      <Filter>Emotiv</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="AppMenu">
+      <UniqueIdentifier>{4e043275-5505-4363-b0da-3dae0cbc7882}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Driver">
+      <UniqueIdentifier>{4a7ea259-271c-4366-aa5a-ac8687320c3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emotiv">
+      <UniqueIdentifier>{f9d1bdc3-5c8e-45fb-8dd3-e8432403db75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oscpack">
+      <UniqueIdentifier>{bd3e0105-5db9-4c11-addf-9e7163480c26}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
