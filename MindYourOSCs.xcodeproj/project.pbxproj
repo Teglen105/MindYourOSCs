@@ -8,21 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		983219621472DC9700EE1105 /* MindYourOSCs.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 983219611472DC9700EE1105 /* MindYourOSCs.1 */; };
-		983219821472DEF000EE1105 /* libboost_thread-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 983219811472DEF000EE1105 /* libboost_thread-mt.dylib */; };
-		983219861472DF2100EE1105 /* libboost_signals-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 983219851472DF2100EE1105 /* libboost_signals-mt.dylib */; };
 		98507A19147B16BC006CF309 /* AppMenu.cc in Sources */ = {isa = PBXBuildFile; fileRef = 98507A0E147B16BC006CF309 /* AppMenu.cc */; };
 		98507A1A147B16BC006CF309 /* Driver.cc in Sources */ = {isa = PBXBuildFile; fileRef = 98507A11147B16BC006CF309 /* Driver.cc */; };
 		98507A1B147B16BC006CF309 /* Emotiv.cc in Sources */ = {isa = PBXBuildFile; fileRef = 98507A14147B16BC006CF309 /* Emotiv.cc */; };
 		98507A1C147B16BC006CF309 /* EmotivHandler.cc in Sources */ = {isa = PBXBuildFile; fileRef = 98507A16147B16BC006CF309 /* EmotivHandler.cc */; };
 		98507A1D147B16BC006CF309 /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = 98507A18147B16BC006CF309 /* main.cc */; };
-		98BE12B7147C9DAE006C2102 /* libedk_ultils_mac.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE12B4147C9DAE006C2102 /* libedk_ultils_mac.dylib */; };
-		98BE12B8147C9DAE006C2102 /* libedk.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE12B5147C9DAE006C2102 /* libedk.1.dylib */; };
-		98BE12B9147C9DAE006C2102 /* libiomp5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE12B6147C9DAE006C2102 /* libiomp5.dylib */; };
 		98BE12C0147C9E7D006C2102 /* IpEndpointName.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE12BA147C9E7D006C2102 /* IpEndpointName.cpp */; };
 		98BE12C1147C9E7D006C2102 /* NetworkingUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE12BC147C9E7D006C2102 /* NetworkingUtils.cpp */; };
 		98BE12C2147C9E7D006C2102 /* UdpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE12BD147C9E7D006C2102 /* UdpSocket.cpp */; };
 		98BE12C3147C9E7D006C2102 /* OscOutboundPacketStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE12BE147C9E7D006C2102 /* OscOutboundPacketStream.cpp */; };
 		98BE12C4147C9E7D006C2102 /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE12BF147C9E7D006C2102 /* OscTypes.cpp */; };
+		98D7CF67147EF31A00C2618A /* libboost_signals-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D7CF62147EF31A00C2618A /* libboost_signals-mt.a */; };
+		98D7CF68147EF31B00C2618A /* libboost_thread-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D7CF63147EF31A00C2618A /* libboost_thread-mt.a */; };
+		98D7CF69147EF31B00C2618A /* libedk_ultils_maca.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D7CF64147EF31A00C2618A /* libedk_ultils_maca.dylib */; };
+		98D7CF6A147EF31B00C2618A /* libedk.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D7CF65147EF31A00C2618A /* libedk.1.dylib */; };
+		98D7CF6B147EF31B00C2618A /* libiomp5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D7CF66147EF31A00C2618A /* libiomp5.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,8 +41,6 @@
 /* Begin PBXFileReference section */
 		9832195B1472DC9700EE1105 /* MindYourOSCs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MindYourOSCs; sourceTree = BUILT_PRODUCTS_DIR; };
 		983219611472DC9700EE1105 /* MindYourOSCs.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = MindYourOSCs.1; sourceTree = "<group>"; };
-		983219811472DEF000EE1105 /* libboost_thread-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_thread-mt.dylib"; path = "/opt/local/lib/libboost_thread-mt.dylib"; sourceTree = "<absolute>"; };
-		983219851472DF2100EE1105 /* libboost_signals-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_signals-mt.dylib"; path = "/opt/local/lib/libboost_signals-mt.dylib"; sourceTree = "<absolute>"; };
 		98507A0E147B16BC006CF309 /* AppMenu.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppMenu.cc; sourceTree = "<group>"; };
 		98507A0F147B16BC006CF309 /* AppMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppMenu.h; sourceTree = "<group>"; };
 		98507A11147B16BC006CF309 /* Driver.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Driver.cc; sourceTree = "<group>"; };
@@ -52,14 +50,16 @@
 		98507A16147B16BC006CF309 /* EmotivHandler.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EmotivHandler.cc; sourceTree = "<group>"; };
 		98507A17147B16BC006CF309 /* EmotivHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotivHandler.h; sourceTree = "<group>"; };
 		98507A18147B16BC006CF309 /* main.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cc; sourceTree = "<group>"; };
-		98BE12B4147C9DAE006C2102 /* libedk_ultils_mac.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libedk_ultils_mac.dylib; path = ../../Libraries/Emotiv/Libraries/libedk_ultils_mac.dylib; sourceTree = "<group>"; };
-		98BE12B5147C9DAE006C2102 /* libedk.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libedk.1.dylib; path = ../../Libraries/Emotiv/Libraries/libedk.1.dylib; sourceTree = "<group>"; };
-		98BE12B6147C9DAE006C2102 /* libiomp5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiomp5.dylib; path = ../../Libraries/Emotiv/Libraries/libiomp5.dylib; sourceTree = "<group>"; };
 		98BE12BA147C9E7D006C2102 /* IpEndpointName.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IpEndpointName.cpp; path = oscpack/ip/IpEndpointName.cpp; sourceTree = "<group>"; };
 		98BE12BC147C9E7D006C2102 /* NetworkingUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkingUtils.cpp; sourceTree = "<group>"; };
 		98BE12BD147C9E7D006C2102 /* UdpSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UdpSocket.cpp; sourceTree = "<group>"; };
 		98BE12BE147C9E7D006C2102 /* OscOutboundPacketStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OscOutboundPacketStream.cpp; path = oscpack/osc/OscOutboundPacketStream.cpp; sourceTree = "<group>"; };
 		98BE12BF147C9E7D006C2102 /* OscTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OscTypes.cpp; path = oscpack/osc/OscTypes.cpp; sourceTree = "<group>"; };
+		98D7CF62147EF31A00C2618A /* libboost_signals-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_signals-mt.a"; path = "Libs/libboost_signals-mt.a"; sourceTree = "<group>"; };
+		98D7CF63147EF31A00C2618A /* libboost_thread-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_thread-mt.a"; path = "Libs/libboost_thread-mt.a"; sourceTree = "<group>"; };
+		98D7CF64147EF31A00C2618A /* libedk_ultils_maca.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libedk_ultils_maca.dylib; path = Libs/libedk_ultils_maca.dylib; sourceTree = "<group>"; };
+		98D7CF65147EF31A00C2618A /* libedk.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libedk.1.dylib; path = Libs/libedk.1.dylib; sourceTree = "<group>"; };
+		98D7CF66147EF31A00C2618A /* libiomp5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiomp5.dylib; path = Libs/libiomp5.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,11 +67,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				983219821472DEF000EE1105 /* libboost_thread-mt.dylib in Frameworks */,
-				983219861472DF2100EE1105 /* libboost_signals-mt.dylib in Frameworks */,
-				98BE12B7147C9DAE006C2102 /* libedk_ultils_mac.dylib in Frameworks */,
-				98BE12B8147C9DAE006C2102 /* libedk.1.dylib in Frameworks */,
-				98BE12B9147C9DAE006C2102 /* libiomp5.dylib in Frameworks */,
+				98D7CF67147EF31A00C2618A /* libboost_signals-mt.a in Frameworks */,
+				98D7CF68147EF31B00C2618A /* libboost_thread-mt.a in Frameworks */,
+				98D7CF69147EF31B00C2618A /* libedk_ultils_maca.dylib in Frameworks */,
+				98D7CF6A147EF31B00C2618A /* libedk.1.dylib in Frameworks */,
+				98D7CF6B147EF31B00C2618A /* libiomp5.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,11 +140,11 @@
 		98507A1E147B1737006CF309 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				983219851472DF2100EE1105 /* libboost_signals-mt.dylib */,
-				98BE12B4147C9DAE006C2102 /* libedk_ultils_mac.dylib */,
-				98BE12B5147C9DAE006C2102 /* libedk.1.dylib */,
-				98BE12B6147C9DAE006C2102 /* libiomp5.dylib */,
-				983219811472DEF000EE1105 /* libboost_thread-mt.dylib */,
+				98D7CF62147EF31A00C2618A /* libboost_signals-mt.a */,
+				98D7CF63147EF31A00C2618A /* libboost_thread-mt.a */,
+				98D7CF64147EF31A00C2618A /* libedk_ultils_maca.dylib */,
+				98D7CF65147EF31A00C2618A /* libedk.1.dylib */,
+				98D7CF66147EF31A00C2618A /* libiomp5.dylib */,
 			);
 			name = Libs;
 			sourceTree = "<group>";
@@ -288,8 +288,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
+					"~/dev/c++/Libraries/Emotiv",
 					/opt/local/include,
-					"/Users/Raymond/dev/c++/Libraries/Emotiv",
 					./oscpack,
 				);
 				LIBRARY_SEARCH_PATHS = (
@@ -298,6 +298,8 @@
 					"\"$(SRCROOT)/../Libraries/boost/stage/lib\"",
 					/opt/local/lib,
 					"\"$(SRCROOT)/../../Libraries/Emotiv/Libraries\"",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Libs\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -307,8 +309,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
+					"~/dev/c++/Libraries/Emotiv",
 					/opt/local/include,
-					"/Users/Raymond/dev/c++/Libraries/Emotiv",
 					./oscpack,
 				);
 				LIBRARY_SEARCH_PATHS = (
@@ -317,6 +319,8 @@
 					"\"$(SRCROOT)/../Libraries/boost/stage/lib\"",
 					/opt/local/lib,
 					"\"$(SRCROOT)/../../Libraries/Emotiv/Libraries\"",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Libs\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
