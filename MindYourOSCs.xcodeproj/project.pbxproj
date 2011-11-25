@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		983219621472DC9700EE1105 /* MindYourOSCs.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 983219611472DC9700EE1105 /* MindYourOSCs.1 */; };
+		983E2AE714801509004B5B95 /* libedk_ultils_mac.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 983E2AE414801509004B5B95 /* libedk_ultils_mac.dylib */; };
+		983E2AE814801509004B5B95 /* libedk.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 983E2AE514801509004B5B95 /* libedk.1.dylib */; };
+		983E2AE914801509004B5B95 /* libiomp5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 983E2AE614801509004B5B95 /* libiomp5.dylib */; };
 		98507A19147B16BC006CF309 /* AppMenu.cc in Sources */ = {isa = PBXBuildFile; fileRef = 98507A0E147B16BC006CF309 /* AppMenu.cc */; };
 		98507A1A147B16BC006CF309 /* Driver.cc in Sources */ = {isa = PBXBuildFile; fileRef = 98507A11147B16BC006CF309 /* Driver.cc */; };
 		98507A1B147B16BC006CF309 /* Emotiv.cc in Sources */ = {isa = PBXBuildFile; fileRef = 98507A14147B16BC006CF309 /* Emotiv.cc */; };
@@ -20,9 +23,6 @@
 		98BE12C4147C9E7D006C2102 /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE12BF147C9E7D006C2102 /* OscTypes.cpp */; };
 		98D7CF67147EF31A00C2618A /* libboost_signals-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D7CF62147EF31A00C2618A /* libboost_signals-mt.a */; };
 		98D7CF68147EF31B00C2618A /* libboost_thread-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D7CF63147EF31A00C2618A /* libboost_thread-mt.a */; };
-		98D7CF69147EF31B00C2618A /* libedk_ultils_maca.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D7CF64147EF31A00C2618A /* libedk_ultils_maca.dylib */; };
-		98D7CF6A147EF31B00C2618A /* libedk.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D7CF65147EF31A00C2618A /* libedk.1.dylib */; };
-		98D7CF6B147EF31B00C2618A /* libiomp5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D7CF66147EF31A00C2618A /* libiomp5.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +41,9 @@
 /* Begin PBXFileReference section */
 		9832195B1472DC9700EE1105 /* MindYourOSCs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MindYourOSCs; sourceTree = BUILT_PRODUCTS_DIR; };
 		983219611472DC9700EE1105 /* MindYourOSCs.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = MindYourOSCs.1; sourceTree = "<group>"; };
+		983E2AE414801509004B5B95 /* libedk_ultils_mac.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libedk_ultils_mac.dylib; path = ../../../../../../usr/local/lib/libedk_ultils_mac.dylib; sourceTree = "<group>"; };
+		983E2AE514801509004B5B95 /* libedk.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libedk.1.dylib; path = ../../../../../../usr/local/lib/libedk.1.dylib; sourceTree = "<group>"; };
+		983E2AE614801509004B5B95 /* libiomp5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiomp5.dylib; path = ../../../../../../usr/local/lib/libiomp5.dylib; sourceTree = "<group>"; };
 		98507A0E147B16BC006CF309 /* AppMenu.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppMenu.cc; sourceTree = "<group>"; };
 		98507A0F147B16BC006CF309 /* AppMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppMenu.h; sourceTree = "<group>"; };
 		98507A11147B16BC006CF309 /* Driver.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Driver.cc; sourceTree = "<group>"; };
@@ -57,9 +60,6 @@
 		98BE12BF147C9E7D006C2102 /* OscTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OscTypes.cpp; path = oscpack/osc/OscTypes.cpp; sourceTree = "<group>"; };
 		98D7CF62147EF31A00C2618A /* libboost_signals-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_signals-mt.a"; path = "Libs/libboost_signals-mt.a"; sourceTree = "<group>"; };
 		98D7CF63147EF31A00C2618A /* libboost_thread-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_thread-mt.a"; path = "Libs/libboost_thread-mt.a"; sourceTree = "<group>"; };
-		98D7CF64147EF31A00C2618A /* libedk_ultils_maca.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libedk_ultils_maca.dylib; path = Libs/libedk_ultils_maca.dylib; sourceTree = "<group>"; };
-		98D7CF65147EF31A00C2618A /* libedk.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libedk.1.dylib; path = Libs/libedk.1.dylib; sourceTree = "<group>"; };
-		98D7CF66147EF31A00C2618A /* libiomp5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiomp5.dylib; path = Libs/libiomp5.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,9 +69,9 @@
 			files = (
 				98D7CF67147EF31A00C2618A /* libboost_signals-mt.a in Frameworks */,
 				98D7CF68147EF31B00C2618A /* libboost_thread-mt.a in Frameworks */,
-				98D7CF69147EF31B00C2618A /* libedk_ultils_maca.dylib in Frameworks */,
-				98D7CF6A147EF31B00C2618A /* libedk.1.dylib in Frameworks */,
-				98D7CF6B147EF31B00C2618A /* libiomp5.dylib in Frameworks */,
+				983E2AE714801509004B5B95 /* libedk_ultils_mac.dylib in Frameworks */,
+				983E2AE814801509004B5B95 /* libedk.1.dylib in Frameworks */,
+				983E2AE914801509004B5B95 /* libiomp5.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,11 +140,11 @@
 		98507A1E147B1737006CF309 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				983E2AE414801509004B5B95 /* libedk_ultils_mac.dylib */,
+				983E2AE514801509004B5B95 /* libedk.1.dylib */,
+				983E2AE614801509004B5B95 /* libiomp5.dylib */,
 				98D7CF62147EF31A00C2618A /* libboost_signals-mt.a */,
 				98D7CF63147EF31A00C2618A /* libboost_thread-mt.a */,
-				98D7CF64147EF31A00C2618A /* libedk_ultils_maca.dylib */,
-				98D7CF65147EF31A00C2618A /* libedk.1.dylib */,
-				98D7CF66147EF31A00C2618A /* libiomp5.dylib */,
 			);
 			name = Libs;
 			sourceTree = "<group>";

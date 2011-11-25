@@ -95,7 +95,7 @@ void AppMenu::handle_choice(int choice)
 			get_config<int&>("Enter OSC Port", osc_port);
 			break;
 		case CONNECT:
-			boost::this_thread::sleep(boost::posix_time::milliseconds(75));
+			boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 			connect();
 			break;
 		case DISC:

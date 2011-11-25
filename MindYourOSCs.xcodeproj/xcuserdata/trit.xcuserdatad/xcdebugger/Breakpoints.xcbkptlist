@@ -76,7 +76,7 @@
    </FileBreakpoints>
    <SymbolicBreakpoints>
       <AddressBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          symbolName = "*0x00377b0b">
