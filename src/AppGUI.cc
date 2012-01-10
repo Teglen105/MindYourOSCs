@@ -1,7 +1,6 @@
 #include "AppGUI.h"
 
-AppGUI::AppGUI(int c, char **v)
-:argc(c), argv(v)
+AppGUI::AppGUI()
 {
 	init_window();
 	init_buttons();
@@ -9,34 +8,49 @@ AppGUI::AppGUI(int c, char **v)
 	init_choice();
 }
 
-void AppGUI::run()
+void AppGUI::run(boost::function<void(string)> connect, boost::function<void()> disconnect)
 {
+	this->connect = connect;
+	this->disconnect = disconnect;
 	window->end();
-  window->show(argc, argv);
-  Fl::run();
+	window->show();
+	Fl::run();
+}
+
+void AppGUI::getValues(string &emotiv_ip, int &emotiv_port, string &osc_ip, int &osc_port)
+{
+	emotiv_ip = string(inputs[EMO_IP]->value());
+	emotiv_port = atoi(inputs[EMO_PORT]->value());
+	osc_ip = string(inputs[OSC_IP]->value());
+	osc_port = atoi(inputs[OSC_PORT]->value());
+}
+
+void AppGUI::setEmotivStatus(string status_msg)
+{
+	status->value(status_msg.c_str());
 }
 
 void AppGUI::init_window()
 {
 	 window_width = 450;
-	window_height = 225;
+	window_height = 245;
 	
-	int w = 110;
-	int h = 25;
-	int x = window_width/2 - w/2 + 20;
+	int w = 380;
+	int h = 45;
+	int x = 55;
 	int y = 15;
 	
 	window = new Fl_Window(window_width,window_height, "MindYourOSCs");
-	status = new Fl_Output(x, y, w, h, "Status:");
+	status = new Fl_Multiline_Output(x, y, w, h, "Status:");
 	status->value("Not Connected");
 }
 
 void AppGUI::init_buttons()
 {
 	int w = 80;
-  int h = 25;
-  int x = window_width/2 - w/2;
-  int y = 80;
+	int h = 25;
+	int x = window_width/2 - w/2;
+	int y = 100;
   
      connect_button = new Fl_Button(x,   y, w, h, "Connect");
   disconnect_button = new Fl_Button(x, y+h, w, h, "Disconnect");
@@ -45,13 +59,11 @@ void AppGUI::init_buttons()
   disconnect_button->callback(button_event, this);
 }
 
-enum { 
-	EMO_IP, EMO_PORT, OSC_IP, OSC_PORT
-};
+
 void AppGUI::init_inputs()
 {
 	int x = 10;
-	int y = 50;
+	int y = 65;
 	int w = 130;
 	int h = 25;
 	
@@ -74,7 +86,7 @@ void AppGUI::init_choice()
 	int w = 150;
 	int h = 25;
 	int x = window_width/2 - w/2;
-	int y = 175;
+	int y = 200;
 	
 	choice = new Fl_Choice(x, y, w, h, "Connect To:");
 	choice->align(FL_ALIGN_TOP_LEFT);
@@ -118,7 +130,22 @@ void AppGUI::choice_event_i(Fl_Widget *choice)
 
 void AppGUI::button_event_i(Fl_Widget *button)
 {
-	cout<<button->label()<<endl;
+	string label = string(button->label());
+
+	if(label.compare("Connect") == 0)
+	{
+		string connect_to = "remote";
+		if(((Fl_Choice*)choice)->value() == ENGINE)
+		{
+			connect_to = "engine";
+		}
+
+		connect(connect_to);
+	}
+	else if(label.compare("Disconnect") == 0)
+	{
+		disconnect();
+	}
 }
 
 void AppGUI::set_emotiv(const char *ip, const char *port)

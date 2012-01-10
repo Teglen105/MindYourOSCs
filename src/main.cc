@@ -4,20 +4,12 @@
     #pragma comment(lib, "wsock32.lib")
 #endif
 
-#include "AppGUI.h"
+#include "Driver.h"
 
 int main(int argc, char **argv) {
   
-  AppGUI gui(argc, argv);
-  
-  try
-  {
-  	
-  	gui.run();
-  	
-  }catch(...){
-  	
-  }
+  Driver driver;
+  driver.start();
   
   return 0;
 }

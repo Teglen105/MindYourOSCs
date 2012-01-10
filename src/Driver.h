@@ -4,14 +4,15 @@
 #include <boost/regex.hpp>
 #include <boost/signals2.hpp>
 
-#include <iostream>
+#include <sstream>
 
 #include "Emotiv.h"
+#include "AppGUI.h"
 
 class Driver
 {
 public:
-	Driver(void);
+	Driver();
 	~Driver(void);
 
 	void start();
@@ -28,10 +29,12 @@ private:
 	boost::shared_mutex _mutex;
 	boost::shared_lock<boost::shared_mutex> _lock;
 	boost::thread epoc_thread;
-	boost::thread menu_thread;
-	//AppMenu menu;
+	boost::thread gui_thread;
+	
+	AppGUI gui;
 	Emotiv epoc;
-  string connect_to;
+
+	string connect_to;
 	bool connect;
 	bool connected;
 	bool running;
