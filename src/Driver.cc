@@ -2,7 +2,6 @@
 
 Driver::Driver() 
 {
-	connect = false;
 	ss_error = new stringstream();
 }
 
@@ -16,15 +15,14 @@ void Driver::start()
 	boost::function<void(string)> connect = boost::bind(&Driver::connect_epoc, this, _1);
 	boost::function<void()> disconnect = boost::bind(&Driver::disconnect_epoc, this);
 	
-	gui_thread = boost::thread(boost::bind(&AppGUI::run, &gui, connect, disconnect));
-	gui_thread.join();	
+	Fl::lock();
+	gui.run(connect, disconnect);
 }
 
 void Driver::connect_epoc(string to)
 {
-	cout<<"connect"<<endl;
 	connect_to = to;
-	connect = true;
+	//connect = true;
 
 	try
 	{       
@@ -51,4 +49,5 @@ void Driver::connect_epoc(string to)
 void Driver::disconnect_epoc()
 {
 	epoc.disconnect();
+	gui.setEmotivStatus("Disconnected");
 }

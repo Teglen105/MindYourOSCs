@@ -16,6 +16,9 @@ public:
 	~Driver(void);
 
 	void start();
+	
+	void connect();
+	void disconnect();
 
 private:
 
@@ -35,7 +38,6 @@ private:
 	Emotiv epoc;
 
 	string connect_to;
-	bool connect;
 	bool connected;
 	bool running;
 	char* e_ip;

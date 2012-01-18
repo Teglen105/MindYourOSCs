@@ -61,4 +61,5 @@ private:
 
 	boost::function<void(string)> connect;
 	boost::function<void()> disconnect;
+	
 };
