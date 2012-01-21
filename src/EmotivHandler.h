@@ -1,61 +1,39 @@
 #ifndef EMOTIV_HANDLER_H_
 #define EMOTIV_HANDLER_H_
 
-#include <edk/edk.h>
-#include <edk/edkErrorCode.h>
-#include <edk/EmoStateDLL.h>
-
-#include <ip/UdpSocket.h>
-#include <osc/OscOutboundPacketStream.h>
-
-#include <boost/thread.hpp>
-#include <boost/assign.hpp>
-using namespace boost::assign;
-
 #include <map>
 using std::map;
-
-#include <string>
-using std::string;
 
 #include <sstream>
 using std::stringstream;
 
-class EmotivHandler
-{
-	
-	UdpSocket* socket;
-	IpEndpointName* ipEnd;
+#include "Handler.h"
+
+class EmotivHandler : public Handler {
 
 public:
 	EmotivHandler();
 	EmotivHandler(EmoStateHandle&, int);
 	~EmotivHandler(void);
 
-	
 	void connect(string ip, int port);
 	void start(EmoStateHandle eState, int usernum);
 	
 private:
 
 	void init();
-	void sendOsc();
 	void stateHandle();
-	void eegHandle();
+	void sendOsc();
 
-#ifdef EEG
-	DataHandle hData;
-#endif
-
+	OSCHelper osc;
 	EmoStateHandle eState;
 	stringstream *user_ss;
-	//Epoc Status
 	int usernum;
 	int batteryLevel;
 	int maxBatteryLevel;
 	static const int contactQualitySize = EE_CHAN_FP2+1;
 	EE_EEG_ContactQuality_t contactQuality[contactQualitySize];
-	static const EE_DataChannel_t targetChannelList[22];
+	static EE_DataChannel_t targetChannelList[22];
 
 	//Gyro
 	int gyroX, gyroY;
@@ -114,7 +92,7 @@ private:
 	EE_CognitivAction_t currentCogType;
 	float cog_power;
 
-	//EEG
+	//Sensor quality
 	static map<int, string> sensorLabels;
 };
 

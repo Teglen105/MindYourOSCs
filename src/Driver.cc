@@ -22,16 +22,16 @@ void Driver::start()
 void Driver::connect_epoc(string to)
 {
 	connect_to = to;
-	//connect = true;
 
 	try
 	{       
 		string e_ip, osc_ip;
 		int e_port, osc_port;
 		gui.getValues(e_ip, e_port, osc_ip, osc_port);
-		epoc.connectOsc(osc_ip, osc_port);
-		epoc.connect(connect_to, e_ip, e_port);
-		//boost::this_thread::sleep(boost::posix_time::milliseconds(20));
+		if ( epoc.connect(connect_to, e_ip, e_port) )
+		{
+			epoc.connectOsc(osc_ip, osc_port);
+		}
 		gui.setEmotivStatus("Connected");
 		epoc_thread = boost::thread(boost::bind(&Emotiv::run, epoc));		
 	}catch(int code){
@@ -43,7 +43,6 @@ void Driver::connect_epoc(string to)
 		gui.setEmotivStatus(ss_error->str());
 		ss_error->str("");
 	}
-
 }
 
 void Driver::disconnect_epoc()

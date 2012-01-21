@@ -40,7 +40,17 @@ void AppGUI::init_window()
 	int x = 55;
 	int y = 15;
 	
-	window = new Fl_Window(window_width,window_height, "MindYourOSCs");
+	char* title;
+
+#ifdef FFT
+	title = "MindYourFFTs";
+#elif EEG
+	title = "MindYourEEGs";
+#else
+	title = "MindYourOSCs";
+#endif
+
+	window = new Fl_Window(window_width,window_height, title);
 	status = new Fl_Multiline_Output(x, y, w, h, "Status:");
 	status->value("Not Connected");
 }
@@ -91,13 +101,20 @@ void AppGUI::init_choice()
 	choice = new Fl_Choice(x, y, w, h, "Connect To:");
 	choice->align(FL_ALIGN_TOP_LEFT);
 		
+#if !defined FFT && !defined EEG
 	choice->add("Control Panel", 0, choice_event, this);
 	choice->add("EmoComposer", 0, choice_event, this);
 	choice->add("Custom", 0, choice_event, this);
+
+	set_emotiv((char*)"127.0.0.1", (char*)"3008");
+#else
+	inputs[EMO_IP]->deactivate();
+	inputs[EMO_PORT]->deactivate();
+#endif	
+
 	choice->add("Engine", 0, choice_event, this);
 	choice->value(0);
 	
-	set_emotiv((char*)"127.0.0.1", (char*)"3008");
 	set_osc((char*)"127.0.0.1", (char*)"4200");
 }
 
@@ -111,21 +128,33 @@ void button_event(Fl_Widget *button, void *gui)
 	((AppGUI*)gui)->button_event_i(button);
 }
 
-enum { CONTROL_PANEL, COMPOSER, CUSTOM, ENGINE };
+#if !defined FFT && !defined EEG
+	enum { CONTROL_PANEL, COMPOSER, CUSTOM, ENGINE };
+#else
+	enum { ENGINE };
+#endif
 void AppGUI::choice_event_i(Fl_Widget *choice)
 {
 	switch(((Fl_Choice*)choice)->value())
 	{
+#if !defined FFT && !defined EEG
 		case CONTROL_PANEL:
 			set_emotiv((char*)"127.0.0.1", (char*)"3008");
 			break;
 		case COMPOSER:
 			set_emotiv((char*)"127.0.0.1", (char*)"1726");
 			break;
-		case CUSTOM: case ENGINE:
+		case CUSTOM: 
 			set_emotiv((char*)"", (char*)"");
 			break;
+#endif
+		case ENGINE:
+			inputs[EMO_IP]->deactivate();
+			inputs[EMO_PORT]->deactivate();
+			break;
 	}
+
+	cout<<"hello"<<endl;
 }
 
 void AppGUI::button_event_i(Fl_Widget *button)
@@ -150,6 +179,8 @@ void AppGUI::button_event_i(Fl_Widget *button)
 
 void AppGUI::set_emotiv(const char *ip, const char *port)
 {
+	inputs[EMO_IP]->activate();
+	inputs[EMO_PORT]->activate();
 	inputs[EMO_IP]->value(ip);
 	inputs[EMO_PORT]->value(port);
 }

@@ -16,9 +16,7 @@ Emotiv::~Emotiv(void)
 }
 
 int Emotiv::connect(string to, string ip, int port)
-{
-	port = 3008;
-    
+{    
 	if(connected)
 		disconnect();
 
@@ -28,10 +26,6 @@ int Emotiv::connect(string to, string ip, int port)
 		: EE_EngineConnect()
 		);
 	_mutex->unlock();
-
-#ifdef EEG
-	//hData = EE_DataCreate();
-#endif
 
 	if(code == EDK_OK)
 		connected = true;
@@ -75,22 +69,21 @@ void Emotiv::getEvent(EmoEngineEventHandle)
 
 		switch((int)eventType)
 		{
-        #ifdef EEG        
+#if defined EEG || defined FFT        
 		case EE_UserAdded:
 			EE_DataAcquisitionEnable(userId,true);
 			break;
-        #endif
+#else
 		case EE_EmoStateUpdated:
 			EE_EmoEngineEventGetEmoState(eEvent, eState);
 			handler.start(eState, userId);
 			break;
-		}
-	}
-
-#ifdef EEG
-		/*EE_DataUpdateHandle(0, hData);
-
-		unsigned int nSamplesTaken=0;
-		EE_DataGetNumberOfSample(hData,&nSamplesTaken);*/
 #endif
+		}
+
+#if defined EEG || defined FFT
+		handler.start(userId);
+#endif
+
+	}
 }

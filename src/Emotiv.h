@@ -1,6 +1,7 @@
 #ifndef EMOTIV_H_
 #define EMOTIV_H_
 
+#include "EEGHandler.h"
 #include "EmotivHandler.h"
 
 const int COMP_PORT = 1726;
@@ -28,14 +29,16 @@ private:
 
 	void getEvent(EmoEngineEventHandle);
 
-	EmotivHandler handler;
 	EmoEngineEventHandle eEvent;
 	EmoStateHandle eState;
 	
-#ifdef EEG
-	DataHandle hData;
-#endif
 
+#if defined EEG || defined FFT
+	EEGHandler handler;
+#else
+	EmotivHandler handler;
+#endif
+	
 	char* ip;
 	int port;
 	int engineStatusCode;

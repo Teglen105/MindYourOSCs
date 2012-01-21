@@ -1,15 +1,8 @@
 #include "EmotivHandler.h"
-#include <iostream>
-using namespace std;
-
 
 EmotivHandler::EmotivHandler()
 {
-	socket = new UdpSocket();
-
-#ifdef EEG
-	hData = EE_DataCreate();
-#endif
+	
 }
 
 EmotivHandler::EmotivHandler(EmoStateHandle& e, int u)
@@ -20,7 +13,10 @@ EmotivHandler::EmotivHandler(EmoStateHandle& e, int u)
 
 EmotivHandler::~EmotivHandler(void)
 {
+
 }
+
+//---------------------------------------------------------------------------------------
 
 void EmotivHandler::start(EmoStateHandle e, int u){
 	eState = e;
@@ -28,14 +24,14 @@ void EmotivHandler::start(EmoStateHandle e, int u){
 
 	init();
 	stateHandle();
-	eegHandle();
+
 	boost::thread(boost::bind(&EmotivHandler::sendOsc, this));
+	cout<<"sending"<<endl;
 }
 
-void EmotivHandler::connect(string ip, int port)
-{
-	ipEnd = new IpEndpointName(ip.c_str(), port);
-}
+//---------------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------------------
 
 void EmotivHandler::init()
 {
@@ -45,11 +41,11 @@ void EmotivHandler::init()
 	for(int i=0; i<EYEBROW; i++)
 		ExpressivValues[i] = 0;
 
-
-
 	currentCogType = COG_NEUTRAL;
+
 }
 
+//---------------------------------------------------------------------------------------
 
 void EmotivHandler::sendOsc()
 {
@@ -60,56 +56,26 @@ void EmotivHandler::sendOsc()
 	string user;
 	*user_ss>>user;
 
-	const int buffer_size = 64;
-	char buffer[buffer_size];
 	string exp_string = "/EXP/";
 	string aff_string = "/AFF/";
-
+	
 //-----SENSOR QUALITY---------------------------
-	osc::OutboundPacketStream out(buffer, buffer_size);
 	iter = sensorLabels.begin();
 	do
 	{
-		out.Clear();
-		out << osc::BeginBundleImmediate
-			<< osc::BeginMessage(string("/SENSOR/"+iter->second+"/"+user).c_str())
-			<< (int)contactQuality[iter->first]
-			<< osc::EndMessage
-			<< osc::EndBundle;
-		socket->SendTo( *ipEnd, out.Data(), out.Size() );
+		osc.sendMsg<int>( string("/SENSOR/"+iter->second+"/"+user), contactQuality[iter->first] );
 	}while(++iter != sensorLabels.end());
 	
 
 //-----BATTERY----------------------------------
-	out.Clear();
-	out = osc::OutboundPacketStream(buffer, buffer_size);
-	out << osc::BeginBundleImmediate
-		<< osc::BeginMessage(string("/BATTERY/"+user).c_str())
-		<< (int)batteryLevel
-		<< osc::EndMessage
-		<< osc::EndBundle;
-	socket->SendTo( *ipEnd, out.Data(), out.Size() );
+	osc.sendMsg<int>(string("/BATTERY/"+user), batteryLevel);
 
 //-----GYRO-------------------------------------
-	out.Clear();
-	out << osc::BeginBundleImmediate
-		<< osc::BeginMessage(string("/GYRO/X/"+user).c_str())
-		<< (int)gyroX
-	    << osc::EndMessage 
-		<< osc::BeginMessage(string("/GYRO/Y/"+user).c_str())
-		<< (int)gyroY
-		<< osc::EndMessage
-		<< osc::EndBundle;
-	socket->SendTo( *ipEnd, out.Data(), out.Size() );
+	osc.sendMsg<int>(string("/GYRO/X/"+user), gyroX);
+	osc.sendMsg<int>(string("/GYRO/Y/"+user), gyroY);
 
 //-----COGNITIV----------------------------------
-	out.Clear();
-	out << osc::BeginBundleImmediate
-		<< osc::BeginMessage(string("/COG/"+CognitivLabels[currentCogType]+"/"+user).c_str())
-		<< (float)cog_power
-	    << osc::EndMessage 
-		<< osc::EndBundle;
-	socket->SendTo( *ipEnd, out.Data(), out.Size() );
+	osc.sendMsg<float>( string("/COG/"+CognitivLabels[currentCogType]+"/"+user), cog_power );
 
 //-----EXPRESSIV----------------------------------
 	iter = ExpressivLabels.begin();
@@ -118,14 +84,8 @@ void EmotivHandler::sendOsc()
 			? ExpressivValues[iter->first] 
 			: 0
 			);
-
-		out.Clear();
-		out << osc::BeginBundleImmediate
-			<< osc::BeginMessage(string(exp_string+iter->second+"/"+user).c_str())
-			<< (float)val
-			<< osc::EndMessage 
-			<< osc::EndBundle;
-		socket->SendTo( *ipEnd, out.Data(), out.Size() );
+	
+		osc.sendMsg<float>( string(exp_string+iter->second+"/"+user), val );
 	}while(++iter != ExpressivLabels.end());
 
 //-----AFFECTIV----------------------------------
@@ -136,29 +96,27 @@ void EmotivHandler::sendOsc()
 			: 0
 			);
 
-		out.Clear();
-		out << osc::BeginBundleImmediate
-			<< osc::BeginMessage(string(aff_string+iter->second+"/"+user).c_str())
-			<< (float)val
-			<< osc::EndMessage 
-			<< osc::EndBundle;
-		socket->SendTo( *ipEnd, out.Data(), out.Size() );
+		osc.sendMsg<float>( string(aff_string+iter->second+"/"+user), val );
 	}while(++iter != AffectivLabels.end());
 }
+
+//---------------------------------------------------------------------------------------
 
 void EmotivHandler::stateHandle()
 {
 
 	//Gyro
 	EE_HeadsetGetGyroDelta(usernum, &gyroX, &gyroY);
-//-------------------------------------------------------------------------------------------
+
+//***********************************************************************************
 	//Affectiv
 	AffectivValues[ENGAGED_BORED] = ES_AffectivGetEngagementBoredomScore(eState);
 	AffectivValues[EXCITEMENT]    = ES_AffectivGetExcitementShortTermScore(eState);
 	AffectivValues[EXCITEMENTLT]  = ES_AffectivGetExcitementLongTermScore(eState);
 	AffectivValues[MEDITATION]    = ES_AffectivGetMeditationScore(eState);
 	AffectivValues[FRUSTRATION]   = ES_AffectivGetFrustrationScore(eState);
-//-------------------------------------------------------------------------------------------
+
+//***********************************************************************************
 	//Expressiv
 	ES_ExpressivGetEyelidState(eState, &ExpressivValues[LEFT_LID], &ExpressivValues[RIGHT_LID]);
 	ES_ExpressivGetEyeLocation (eState, &ExpressivValues[HORIEYE], &ExpressivValues[VERTEYE]);
@@ -181,49 +139,22 @@ void EmotivHandler::stateHandle()
 
 	if((actionHigh & EXP_EYEBROW) == EXP_EYEBROW){ ExpressivValues[EYEBROW] = powerHigh; }
 	if((actionHigh & EXP_FURROW) == EXP_FURROW){ ExpressivValues[FURROW] = powerHigh; }
-//-------------------------------------------------------------------------------------------
+
+//***********************************************************************************
 	//Cognitiv
 	currentCogType = ES_CognitivGetCurrentAction(eState);
 	cog_power = ES_CognitivGetCurrentActionPower(eState);	
-//-------------------------------------------------------------------------------------------
-	
+
+//***********************************************************************************
+	//Other
 	ES_GetBatteryChargeLevel(eState, &batteryLevel, &maxBatteryLevel);
 	ES_GetContactQualityFromAllChannels(eState, contactQuality, contactQualitySize);
 } 
 
-void EmotivHandler::eegHandle()
-{
-#ifdef EEG
-	//cout<<"Getting eeg data..."<<endl;
-	EE_DataUpdateHandle(0, hData);
+//---------------------------------------------------------------------------------------
 
-	unsigned int nSamplesTaken=0;
-	EE_DataGetNumberOfSample(hData,&nSamplesTaken);				
-
-	//cout<<nSamplesTaken<<endl;
-	if (nSamplesTaken != 0  ) {
-
-		double* data = new double[nSamplesTaken];
-		for (int sampleIdx=0 ; sampleIdx<(int)nSamplesTaken ; ++ sampleIdx) {
-			for (int i = 0 ; i<sizeof(targetChannelList)/sizeof(EE_DataChannel_t) ; i++) {
-				EE_DataGet(hData, targetChannelList[i], data, nSamplesTaken);
-				if(targetChannelList[i] == ED_TIMESTAMP)
-					cout << i <<": "<<data[sampleIdx] << endl;
-			}	
-			//cout << endl;
-		}
-		delete[] data;					
-	}
-#endif
-}
-
-const EE_DataChannel_t EmotivHandler::targetChannelList[22]= {
-	ED_COUNTER,
-	ED_AF3, ED_F7, ED_F3, ED_FC5, ED_T7, 
-	ED_P7, ED_O1, ED_O2, ED_P8, ED_T8, 
-	ED_FC6, ED_F4, ED_F8, ED_AF4, ED_GYROX, ED_GYROY, ED_TIMESTAMP, 
-	ED_FUNC_ID, ED_FUNC_VALUE, ED_MARKER, ED_SYNC_SIGNAL
-};
+#include <boost/assign.hpp>
+using namespace boost::assign;
 
 map<int, string> EmotivHandler::AffectivLabels = map_list_of 
 	(ENGAGED_BORED, "Engaged")
@@ -263,11 +194,7 @@ map<int, string> EmotivHandler::CognitivLabels = map_list_of
 	(COG_ROTATE_FORWARDS, "ROTATE_FORWARDS")
 	(COG_ROTATE_REVERSE, "ROTATE_REVERSE")
 	(COG_DISAPPEAR, "DISAPPEAR");
-/*
-typedef enum EE_InputChannels_enum {
-		
-	} EE_InputChannels_t;
-*/
+
 map<int, string> EmotivHandler::sensorLabels = map_list_of
 	(EE_CHAN_CMS, "CMS")
 	(EE_CHAN_DRL, "DRL")
