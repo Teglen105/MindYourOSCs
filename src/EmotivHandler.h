@@ -9,7 +9,6 @@
 #include <osc/OscOutboundPacketStream.h>
 
 #include <boost/thread.hpp>
-#include <boost/bind.hpp>
 #include <boost/assign.hpp>
 using namespace boost::assign;
 
@@ -39,9 +38,14 @@ public:
 	
 private:
 
-	void run();
+	void init();
 	void sendOsc();
-	void stateHandle();	
+	void stateHandle();
+	void eegHandle();
+
+#ifdef EEG
+	DataHandle hData;
+#endif
 
 	EmoStateHandle eState;
 	stringstream *user_ss;
@@ -51,6 +55,7 @@ private:
 	int maxBatteryLevel;
 	static const int contactQualitySize = EE_CHAN_FP2+1;
 	EE_EEG_ContactQuality_t contactQuality[contactQualitySize];
+	static const EE_DataChannel_t targetChannelList[22];
 
 	//Gyro
 	int gyroX, gyroY;

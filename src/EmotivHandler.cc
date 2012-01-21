@@ -6,7 +6,10 @@ using namespace std;
 EmotivHandler::EmotivHandler()
 {
 	socket = new UdpSocket();
-	
+
+#ifdef EEG
+	hData = EE_DataCreate();
+#endif
 }
 
 EmotivHandler::EmotivHandler(EmoStateHandle& e, int u)
@@ -14,7 +17,6 @@ EmotivHandler::EmotivHandler(EmoStateHandle& e, int u)
 {
 	
 }
-
 
 EmotivHandler::~EmotivHandler(void)
 {
@@ -24,8 +26,9 @@ void EmotivHandler::start(EmoStateHandle e, int u){
 	eState = e;
 	usernum = u;
 
-	run();
+	init();
 	stateHandle();
+	eegHandle();
 	boost::thread(boost::bind(&EmotivHandler::sendOsc, this));
 }
 
@@ -34,13 +37,15 @@ void EmotivHandler::connect(string ip, int port)
 	ipEnd = new IpEndpointName(ip.c_str(), port);
 }
 
-void EmotivHandler::run()
+void EmotivHandler::init()
 {
 	for(int i=0; i<FRUSTRATION; i++)
 		AffectivValues[i] = 0;
 
 	for(int i=0; i<EYEBROW; i++)
 		ExpressivValues[i] = 0;
+
+
 
 	currentCogType = COG_NEUTRAL;
 }
@@ -185,6 +190,40 @@ void EmotivHandler::stateHandle()
 	ES_GetBatteryChargeLevel(eState, &batteryLevel, &maxBatteryLevel);
 	ES_GetContactQualityFromAllChannels(eState, contactQuality, contactQualitySize);
 } 
+
+void EmotivHandler::eegHandle()
+{
+#ifdef EEG
+	//cout<<"Getting eeg data..."<<endl;
+	EE_DataUpdateHandle(0, hData);
+
+	unsigned int nSamplesTaken=0;
+	EE_DataGetNumberOfSample(hData,&nSamplesTaken);				
+
+	//cout<<nSamplesTaken<<endl;
+	if (nSamplesTaken != 0  ) {
+
+		double* data = new double[nSamplesTaken];
+		for (int sampleIdx=0 ; sampleIdx<(int)nSamplesTaken ; ++ sampleIdx) {
+			for (int i = 0 ; i<sizeof(targetChannelList)/sizeof(EE_DataChannel_t) ; i++) {
+				EE_DataGet(hData, targetChannelList[i], data, nSamplesTaken);
+				if(targetChannelList[i] == ED_TIMESTAMP)
+					cout << i <<": "<<data[sampleIdx] << endl;
+			}	
+			//cout << endl;
+		}
+		delete[] data;					
+	}
+#endif
+}
+
+const EE_DataChannel_t EmotivHandler::targetChannelList[22]= {
+	ED_COUNTER,
+	ED_AF3, ED_F7, ED_F3, ED_FC5, ED_T7, 
+	ED_P7, ED_O1, ED_O2, ED_P8, ED_T8, 
+	ED_FC6, ED_F4, ED_F8, ED_AF4, ED_GYROX, ED_GYROY, ED_TIMESTAMP, 
+	ED_FUNC_ID, ED_FUNC_VALUE, ED_MARKER, ED_SYNC_SIGNAL
+};
 
 map<int, string> EmotivHandler::AffectivLabels = map_list_of 
 	(ENGAGED_BORED, "Engaged")

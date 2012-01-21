@@ -1,8 +1,6 @@
 #ifndef EMOTIV_H_
 #define EMOTIV_H_
 
-//#define EEG
-
 #include "EmotivHandler.h"
 
 const int COMP_PORT = 1726;
@@ -45,6 +43,8 @@ private:
 	unsigned int userId;
 	bool connected;
 	boost::mutex *_mutex;
+
+
 };
 
 #endif //EMOTIV_H_

@@ -1,6 +1,5 @@
 #include "Emotiv.h"
 
-
 Emotiv::Emotiv(void)
 {
 	eEvent = EE_EmoEngineEventCreate();
@@ -18,17 +17,20 @@ Emotiv::~Emotiv(void)
 
 int Emotiv::connect(string to, string ip, int port)
 {
-    std::cout<<port<<std::endl;
+	port = 3008;
+    
 	if(connected)
 		disconnect();
 
+	_mutex->lock();
 	int code = ( (to == "remote") 
 		? EE_EngineRemoteConnect(ip.c_str(), port)
 		: EE_EngineConnect()
 		);
+	_mutex->unlock();
 
 #ifdef EEG
-	hData = EE_DataCreate();
+	//hData = EE_DataCreate();
 #endif
 
 	if(code == EDK_OK)
@@ -65,30 +67,30 @@ void Emotiv::run()
 void Emotiv::getEvent(EmoEngineEventHandle)
 {
 	engineStatusCode = EE_EngineGetNextEvent(eEvent);
-		if(engineStatusCode == EDK_OK)
-		{
-			EE_Event_t eventType = EE_EmoEngineEventGetType(eEvent);
-			EE_EmoEngineEventGetUserId(eEvent, &userId);
-			EE_EngineGetNumUser(&numberOfUsers);
+	if(engineStatusCode == EDK_OK)
+	{
+		EE_Event_t eventType = EE_EmoEngineEventGetType(eEvent);
+		EE_EmoEngineEventGetUserId(eEvent, &userId);
+		EE_EngineGetNumUser(&numberOfUsers);
 
-			switch((int)eventType)
-			{
-            #ifdef EEG        
-			case EE_UserAdded:
-				EE_DataAcquisitionEnable(userId,true);
-				break;
-            #endif
-			case EE_EmoStateUpdated:
-				EE_EmoEngineEventGetEmoState(eEvent, eState);
-				handler.start(eState, userId);
-				break;
-			}
+		switch((int)eventType)
+		{
+        #ifdef EEG        
+		case EE_UserAdded:
+			EE_DataAcquisitionEnable(userId,true);
+			break;
+        #endif
+		case EE_EmoStateUpdated:
+			EE_EmoEngineEventGetEmoState(eEvent, eState);
+			handler.start(eState, userId);
+			break;
 		}
+	}
 
 #ifdef EEG
-		EE_DataUpdateHandle(0, hData);
+		/*EE_DataUpdateHandle(0, hData);
 
 		unsigned int nSamplesTaken=0;
-		EE_DataGetNumberOfSample(hData,&nSamplesTaken);
+		EE_DataGetNumberOfSample(hData,&nSamplesTaken);*/
 #endif
 }
