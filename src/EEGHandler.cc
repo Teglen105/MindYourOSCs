@@ -1,5 +1,37 @@
 #include "EEGHandler.h"
 
+struct EEGData{
+
+	int filled;
+	const int channels;
+	const int samples;
+	vector< vector< double > > data;
+
+	EEGData(int c, int s)
+		: channels(c), samples(s), filled(0) { }
+
+	void push_back(double* temp)
+	{
+		vector<double> temp_vec;
+		for(int i=0; i<samples; i++)
+		{
+			temp_vec.push_back(temp[i]);
+		}
+
+		data.push_back(temp_vec);
+	}
+
+	vector<double> at(int i)
+	{
+		return data[i];
+	}
+
+};
+
+EEGHandler::EEGHandler()
+{
+	_mutex = new boost::mutex;
+}
 
 void EEGHandler::connect(string ip, int port)
 {
@@ -30,16 +62,20 @@ void EEGHandler::recordData()
 
 	if (nSamplesTaken != 0  ) {
 
-		double* data = new double[nSamplesTaken];
+		
 		int channels = sizeof(targetChannelList)/sizeof(EE_DataChannel_t); //number of channels to record
-		for (int sampleIdx=0 ; sampleIdx<(int)nSamplesTaken ; ++ sampleIdx) {
-			for (int i = 0; i < channels; i++) {
-				EE_DataGet(hData, targetChannelList[i], data, nSamplesTaken);
-				if(targetChannelList[i] == ED_TIMESTAMP)
-					cout << i <<": "<<data[sampleIdx] << endl;
-			}
-		}
-		delete[] data;					
+		double* tempdata;
+		EEGData *data = new EEGData(channels, nSamplesTaken);
+		for (int i = 0; i < channels; i++) 
+		{
+			tempdata = new double[nSamplesTaken];
+			EE_DataGet(hData, targetChannelList[i], tempdata, nSamplesTaken);
+			data->push_back(tempdata);
+		}	
+
+		//_mutex->lock();
+		data_queue.push(data);
+		//_mutex->unlock();
 	}
 }
 
@@ -50,7 +86,23 @@ void EEGHandler::sendEEGOsc()
 
 void EEGHandler::sendFFTOsc()
 {
+	if(data_queue.size() > 0)
+	{
+		_mutex->lock();
+		
+		EEGData *data = data_queue.front();		
+		data_queue.pop();
 
+		for(int j=0; j<data->samples; j++)
+		{
+			for(int i=0; i<data->channels; i++)
+			{
+				cout<< j << " : " << i << " : " << data->at(i).at(j) << endl;
+			}
+		}
+		
+		_mutex->unlock();
+	}
 }
 
 const EE_DataChannel_t EEGHandler::targetChannelList[22] = {

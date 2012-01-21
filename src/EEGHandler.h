@@ -3,12 +3,20 @@
 
 #include "Handler.h"
 
+#include <vector>
+#include <queue>
+using std::vector;
+using std::queue;
+
+struct EEGData;
+
 class EEGHandler : public Handler {
 
 public:
+	EEGHandler();
 	void start(int userId);
 	void connect(string ip, int port);
-
+	
 private:
 	
 	void recordData();
@@ -17,6 +25,9 @@ private:
 
 	int currentUserId;
 	DataHandle hData;
+
+	boost::mutex *_mutex;
+	queue<EEGData*> data_queue;
 
 	static const EE_DataChannel_t targetChannelList[22];
 };
