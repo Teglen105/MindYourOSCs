@@ -8,6 +8,7 @@
 using std::vector;
 using std::queue;
 
+struct EEGQueue;
 struct EEGData;
 
 class EEGHandler : public Handler {
@@ -27,7 +28,7 @@ private:
 	DataHandle hData;
 
 	boost::mutex *_mutex;
-	queue<EEGData*> data_queue;
+	EEGQueue *data_queue;
 
 	static const EE_DataChannel_t targetChannelList[22];
 };

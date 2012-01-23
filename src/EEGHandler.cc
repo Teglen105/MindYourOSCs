@@ -1,6 +1,26 @@
 #include "EEGHandler.h"
 
-struct EEGData{
+class EEGQueue {
+
+private:
+	int count;
+	queue<EEGData*> data;
+
+public:
+	int size() { return data.size(); }
+	void push(EEGData *d) {	data.push(d); }
+
+	EEGData* pop()
+	{
+		EEGData *d = data.front();
+		data.pop();
+		return d;
+	}
+};
+
+//----------------------------------------------------------------------
+
+struct EEGData {
 
 	int filled;
 	const int channels;
@@ -28,10 +48,15 @@ struct EEGData{
 
 };
 
+//----------------------------------------------------------------------
+
 EEGHandler::EEGHandler()
 {
 	_mutex = new boost::mutex;
+	data_queue = new EEGQueue;
 }
+
+//----------------------------------------------------------------------
 
 void EEGHandler::connect(string ip, int port)
 {
@@ -39,6 +64,8 @@ void EEGHandler::connect(string ip, int port)
 	hData = EE_DataCreate();
 	EE_DataSetBufferSizeInSec(1);
 }
+
+//----------------------------------------------------------------------
 
 void EEGHandler::start(int userId)
 {
@@ -52,6 +79,8 @@ void EEGHandler::start(int userId)
 #endif
 
 }
+
+//----------------------------------------------------------------------
 
 void EEGHandler::recordData()
 {
@@ -73,25 +102,26 @@ void EEGHandler::recordData()
 			data->push_back(tempdata);
 		}	
 
-		//_mutex->lock();
-		data_queue.push(data);
-		//_mutex->unlock();
+		data_queue->push(data);
 	}
 }
+
+//----------------------------------------------------------------------
 
 void EEGHandler::sendEEGOsc()
 {
 
 }
 
+//----------------------------------------------------------------------
+
 void EEGHandler::sendFFTOsc()
 {
-	if(data_queue.size() > 0)
+	if(data_queue->size() > 0)
 	{
 		_mutex->lock();
 		
-		EEGData *data = data_queue.front();		
-		data_queue.pop();
+		EEGData *data = data_queue->pop();		
 
 		for(int j=0; j<data->samples; j++)
 		{
@@ -104,6 +134,8 @@ void EEGHandler::sendFFTOsc()
 		_mutex->unlock();
 	}
 }
+
+//----------------------------------------------------------------------
 
 const EE_DataChannel_t EEGHandler::targetChannelList[22] = {
 	ED_COUNTER,
