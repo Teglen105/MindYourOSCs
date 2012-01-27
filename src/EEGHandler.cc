@@ -1,36 +1,97 @@
 #include "EEGHandler.h"
 
-class EEGData {
+//vector<FFTData> EEGData::fft_queue;
 
-	int channel;
-	vector<double> data;
+vector<double> hann_vec;
 
-public:
+EEGData::EEGData(int c)
+		:channel(c)
+{
+	
+	data = new vector<double>();
+	count = 0;
 
-	EEGData(int c)
-		:channel(c) {}
+	in = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * SAMPLES_SIZE);
+    out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * SAMPLES_SIZE);
+    plan = fftw_plan_dft_1d(SAMPLES_SIZE-20, in, out, FFTW_FORWARD, FFTW_ESTIMATE);
+	sums.push_back(0);
+}
 
-	void record(double *tempdata, int samples)
+EEGData::~EEGData()
+{
+	
+}
+
+void EEGData::record(double *tempdata, int samples)
+{
+	for(int i=0; i<samples; i++)
 	{
-		for(int i=0; i<samples; i++)
+		++count;
+		data->push_back(tempdata[i]);
+
+		int size = data->size();
+		if(size % (SAMPLES_SIZE/8) == 0)
 		{
-			data.push_back(tempdata[i]);
+			sums.push_back(0);
 		}
 
-		delete[] tempdata;
-	}
-};
+		sums.back() += tempdata[i];
 
+		if(size >= SAMPLES_SIZE)
+		{
+			fftData();
+			data->erase(data->begin());
+		}
+
+		if(sums.size() > 8)
+		{
+			sums.erase(sums.begin());
+		}
+	}
+
+	delete[] tempdata;
+}
+
+void EEGData::fftData()
+{
+	int j=0;
+	for( int i=0; i<SAMPLES_SIZE; ++i)
+	{
+		if(i != 0 && i % (SAMPLES_SIZE/8) == 0)
+		{
+			++j;
+		}
+
+		in[i][0] = data->at(i) - ( data->at(i) - ( sums[j] / (SAMPLES_SIZE/8)) );
+	}
+
+	hannWin(in, SAMPLES_SIZE);
+	fftw_execute(plan);
+}
+
+void EEGData::hannWin(fftw_complex *in, int size)
+{
+	for(int i = 0; i < size; i++)
+	{
+		in[i][0] *= hann_vec[i];
+	}
+}
+
+//----------------------------------------------------------------------
+//**********************************************************************
 //----------------------------------------------------------------------
 
 EEGHandler::EEGHandler()
 {
 	_mutex = new boost::mutex;
 
-	for(int i=0; i<channels; i++)
+	for(int i=0; i<CHANNELS; i++)
 	{
 		eeg_vec.push_back(new EEGData(i));
 	}
+
+	
+	calc_hann_win();
 }
 
 EEGHandler::~EEGHandler()
@@ -61,27 +122,20 @@ void EEGHandler::recordData()
 {
 	EE_DataUpdateHandle(0, hData);
 
-	unsigned int nSamplesTaken=0;
-	EE_DataGetNumberOfSample(hData,&nSamplesTaken);		
+	unsigned int samples=0;
+	EE_DataGetNumberOfSample(hData,&samples);		
 	
-	if (nSamplesTaken != 0  ) {
+	if (samples != 0  ) {
 		
 		double* tempdata;
 		
-		for (int i = 0; i < channels; i++) 
+		for (int i = 0; i < CHANNELS; i++) 
 		{
-			
-			tempdata = new double[nSamplesTaken];
-			EE_DataGet(hData, targetChannelList[i], tempdata, nSamplesTaken);
+			tempdata = new double[samples];
+			EE_DataGet(hData, targetChannelList[i], tempdata, samples);
 
-			boost::thread(boost::bind(&EEGData::record, eeg_vec[i], tempdata, nSamplesTaken));
-			
-			/*#ifdef FFT
-				
-			#elif defined EEG
-				run_thread = new boost::thread(boost::bind(&EEGHandler::sendEEGOsc, this));
-			#endif*/
-		}	
+			eeg_vec[i]->record(tempdata, samples);
+		}
 	}
 }
 
@@ -101,11 +155,30 @@ void EEGHandler::sendFFTOsc()
 
 //----------------------------------------------------------------------
 
-const EE_DataChannel_t EEGHandler::targetChannelList[channels] = {
-	ED_COUNTER,
-	ED_AF3, ED_F7, ED_F3, ED_FC5, ED_T7, 
-	ED_P7, ED_O1, ED_O2, ED_P8, ED_T8, 
-	ED_FC6, ED_F4, ED_F8, ED_AF4, ED_GYROX, ED_GYROY, ED_TIMESTAMP, 
-	ED_FUNC_ID, ED_FUNC_VALUE, ED_MARKER, ED_SYNC_SIGNAL
-};
+void EEGHandler::calc_hann_win()
+{
+	for(int i = 0; i < SAMPLES_SIZE; i++)
+	{
+		double A = i;
+
+		A = 2 * PI * A;
+
+		A /= (SAMPLES_SIZE - 1);
+
+		A = cos(A);
+
+		A = ((i == 0) 
+			? 1 + A
+			: 1 - A
+			);
+
+		A*=.5;
+
+		hann_vec.push_back(A);
+	}
+}
+
+//----------------------------------------------------------------------
+
+
 
