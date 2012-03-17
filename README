@@ -1,2 +1,7 @@
-The OSX version currently only works with the Development headset, with 
-the OSX SDK installed. 
+To use the OSX version, please download the OSX version of Control Panel
+http://emotiv.com/store/apps/applications/135/567
+
+For the Windows version, download the Windows version of Control Panel, 
+and copy the edk.dll and edk_utils.dll files into the same directory 
+where MindYourOSCs.exe is ( or just put MindYourOSCs.exe into the Emotiv
+directory)
