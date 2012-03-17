@@ -10,10 +10,9 @@ OUTPUT 	= bin
 SRC 		= src
 OBJOUT 	= build
 
-OBJECTS = main.o  Driver.o AppGUI.o Emotiv.o EmotivHandler.o 
+OBJECTS = main.o  Driver.o AppGUI.o Emotiv.o EmotivHandler.o OSCHelper.o
 OBJS 		:= $(foreach OBJ, $(OBJECTS), $(OBJOUT)/$(OBJ) ) 
 SRC_DIR = src
-SRC 		= main.cc AppGUI.cc Driver.cc Emotiv.cc EmotivHandler.cc
 
 OSCPACK_DIR = ./oscpack
 OSCPACK_OBJ_DIR = $(OSCPACK_DIR)/build

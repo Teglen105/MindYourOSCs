@@ -1,7 +1,10 @@
 #ifndef EMOTIV_H_
 #define EMOTIV_H_
 
-#include "EEGHandler.h"
+#if defined EEG || defined FFT
+  #include "EEGHandler.h"
+#endif 
+
 #include "EmotivHandler.h"
 
 const int COMP_PORT = 1726;

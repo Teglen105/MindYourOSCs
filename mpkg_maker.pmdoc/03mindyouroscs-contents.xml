@@ -1,1 +1,1 @@
-<pkg-contents spec="1.12"><f n="MindYourOSCs" o="trit" g="staff" p="0" pt="./bin/MindYourOSCs" m="false" t="file"><mod>group</mod><mod>owner</mod></f></pkg-contents>
+<pkg-contents spec="1.12"><f n="MindYourOSCs.app" o="trit" g="staff" p="16877" pt="/Users/Raymond/dev/c++/Emotiv/MindYourOSCs/bin/MindYourOSCs.app" m="false" t="file"><f n="Contents" o="trit" g="staff" p="16877"><f n="Info.plist" o="trit" g="staff" p="33188"/><f n="MacOS" o="trit" g="staff" p="16877"><f n="MindYourOSCs" o="trit" g="staff" p="33261"/></f></f></f></pkg-contents>
