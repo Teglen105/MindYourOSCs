@@ -40,9 +40,6 @@ private:
 	fftw_complex* in;
 	fftw_complex* out;
 	fftw_plan plan;
-
-	//queue<vector<double>*> data_queue;
-	//static vector<FFTData> fft_queue;
 };
 
 //==========================================================
@@ -69,11 +66,6 @@ private:
 
 	boost::mutex *_mutex;
 	vector<EEGData*> eeg_vec;
-	/*
-	fftw_complex *in;
-	fftw_complex *out;
-    fftw_plan plan;
-	*/
 };
 
 #endif //EEGHANDLER_H_

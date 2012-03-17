@@ -1,13 +1,10 @@
 #include "EEGHandler.h"
 
-//vector<FFTData> EEGData::fft_queue;
-
 vector<double> hann_vec;
 
 EEGData::EEGData(int c)
 		:channel(c)
 {
-	
 	data = new vector<double>();
 	count = 0;
 

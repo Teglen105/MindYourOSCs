@@ -18,7 +18,8 @@ EmotivHandler::~EmotivHandler(void)
 
 //---------------------------------------------------------------------------------------
 
-void EmotivHandler::start(EmoStateHandle e, int u){
+void EmotivHandler::start(EmoStateHandle e, int u)
+{
 	eState = e;
 	usernum = u;
 
@@ -30,6 +31,11 @@ void EmotivHandler::start(EmoStateHandle e, int u){
 }
 
 //---------------------------------------------------------------------------------------
+
+void EmotivHandler::connect(string ip, int port)
+{
+	osc.connect(ip, port);
+}
 
 //---------------------------------------------------------------------------------------
 
@@ -63,7 +69,7 @@ void EmotivHandler::sendOsc()
 	iter = sensorLabels.begin();
 	do
 	{
-		osc.sendMsg<int>( string("/SENSOR/"+iter->second+"/"+user), contactQuality[iter->first] );
+		osc.sendMsg<int>( string("/SENSOR_QUALITY/"+iter->second+"/"+user), contactQuality[iter->first] );
 	}while(++iter != sensorLabels.end());
 	
 
