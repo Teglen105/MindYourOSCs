@@ -133,9 +133,12 @@ void EmotivHandler::stateHandle()
 	actionHigh = ES_ExpressivGetUpperFaceAction      ( eState );		
 	powerHigh  = ES_ExpressivGetUpperFaceActionPower ( eState );
 
-	ExpressivValues[WINK_LEFT] = (ExpressivValues[LEFT_LID] == 1);
-	ExpressivValues[WINK_RIGHT] = (ExpressivValues[RIGHT_LID] == 1);
 	ExpressivValues[BLINK] = (ExpressivValues[LEFT_LID] == ExpressivValues[RIGHT_LID] && ExpressivValues[RIGHT_LID] == 1);
+	if ( ! ExpressivValues[BLINK])
+	{
+		ExpressivValues[WINK_LEFT] = (ExpressivValues[LEFT_LID] == 1);
+		ExpressivValues[WINK_RIGHT] = (ExpressivValues[RIGHT_LID] == 1);
+	}
 		
 	if((actionLow & EXP_SMILE) == EXP_SMILE){ ExpressivValues[SMILE] = powerLow; }
 	if((actionLow & EXP_CLENCH) == EXP_CLENCH){ ExpressivValues[CLENCH] = powerLow; }
