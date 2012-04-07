@@ -1,5 +1,6 @@
-To use the OSX version, please download the OSX version of Control Panel
-http://emotiv.com/store/apps/applications/135/567
+The current OSX version currently only works for developer and research headsets. 
+I've contacted Emotiv about this, and hope to have a new version of the 
+library files soon so that I can build a copy for consumers. 
 
 For the Windows version, download the Windows version of Control Panel, 
 and copy the edk.dll and edk_utils.dll files into the same directory 
